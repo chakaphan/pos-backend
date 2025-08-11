@@ -451,13 +451,20 @@ export interface ApiSaleSale extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    customer_name: Schema.Attribute.String;
-    date: Schema.Attribute.DateTime;
+    customer_email: Schema.Attribute.String;
+    customer_name: Schema.Attribute.String & Schema.Attribute.Required;
+    customer_phone: Schema.Attribute.String;
+    date: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    discount_amount: Schema.Attribute.Decimal;
+    invoice_number: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::sale.sale'> &
       Schema.Attribute.Private;
+    notes: Schema.Attribute.Text;
     products: Schema.Attribute.Component<'shared.sale-item', true>;
     publishedAt: Schema.Attribute.DateTime;
+    subtotal: Schema.Attribute.Decimal;
+    tax_amount: Schema.Attribute.Decimal;
     total: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
